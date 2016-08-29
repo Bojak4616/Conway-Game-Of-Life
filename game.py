@@ -24,6 +24,30 @@ class Conway:
 			board += '\n'
 		print board
 
+	def neighbors_alive(self, x, y):
+		live_cells = 0
+
+		++live_cells if self.self_alive(x+1,y-1)
+		++live_cells if self.self_alive(x-1,y+1)
+		++live_cells if self.self_alive(x+1,y+1)
+		++live_cells if self.self_alive(x,y+1)
+		++live_cells if self.self_alive(x+1,y)
+		++live_cells if self.self_alive(x-1,y-1)
+		++live_cells if self.self_alive(x-1,y)
+		++live_cells if self.self_alive(x,y-1)
+
+
+		return live_cells
+
+	def self_alive(self, x, y):
+		try:
+			return self.map[x][y] == '+'
+		except IndexError:
+			return False
+
+	def set_cell(self, x, y):
+		self.map[x][y] = '+'
+
 
 if __name__ == '__main__':
 
