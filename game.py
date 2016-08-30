@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from time import sleep
-from os import system
+from sys  import exit
 
 class Conway:
 	def __init__ (self, width, height):
@@ -81,15 +81,31 @@ class Conway:
 
 if __name__ == '__main__':
 
-	print(chr(27) + "[2J")
-	NewGame = Conway(20,20)
-	NewGame.generate_world()
-	NewGame.set_cell(2, 1)
-	NewGame.set_cell(3, 2)
-	NewGame.set_cell(1, 3)
-	NewGame.set_cell(2, 3)
-	NewGame.set_cell(3, 3)
+	x = int(raw_input("Enter board width: "))
+	y = int(raw_input("Enter board height: "))
+	if(x < 20 or y < 20):
+		print "ERROR: Game board has to be at least 20x20"
+		exit(1)
 
+	print "Enter coordinates as 'x,y'. A blank line will continue the program. Watch your typing!"
+	cords = []
+	while(True):
+		cord = raw_input()
+		if len(cord) != 3:
+			break
+		cords += str(cord).split(',')
+
+	print(chr(27) + "[2J")
+	NewGame = Conway(x,y)
+	NewGame.generate_world()
+	
+	for i in xrange(len(cords)):
+		if i % 2 != 0:
+			continue
+		try:
+			NewGame.set_cell(int(cords[i]), int(cords[i+1]))
+		except IndexError:
+			break
 
 	while(True):
 		sleep(.3)
