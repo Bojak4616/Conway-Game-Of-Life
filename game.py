@@ -87,7 +87,7 @@ if __name__ == '__main__':
 		print "ERROR: Game board has to be at least 20x20"
 		exit(1)
 
-	print "Enter coordinates as 'x,y'. A blank line will continue the program. Watch your typing!"
+	print "Enter coordinates as 'x,y'[Enter]. A blank line will continue the program. Watch your typing!"
 	cords = []
 	while(True):
 		cord = raw_input()
